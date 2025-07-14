@@ -6,14 +6,16 @@
   <title>Zeryx Official</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;700&display=swap');
     body {
-      background: linear-gradient(135deg, #18181b 0%, #232526 100%);
+      background: radial-gradient(ellipse 140% 100% at 50% 0%, #25283d 0%, #12131a 80%);
       min-height: 100vh;
       margin: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Montserrat', Arial, sans-serif;
+      overflow-x: hidden;
     }
     .centerer {
       display: flex;
@@ -23,26 +25,68 @@
       min-height: 100vh;
       width: 100vw;
     }
+    .futuristic-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 600px;
+      height: 380px;
+      background: conic-gradient(from 180deg at 50% 50%, #fa2424 0deg, #00f0ff 180deg, #fa2424 360deg);
+      filter: blur(60px) brightness(0.7);
+      opacity: 0.37;
+      transform: translate(-50%,-50%) scale(1.12);
+      z-index: 0;
+      pointer-events: none;
+      animation: rotate-glow 9s linear infinite;
+    }
+    @keyframes rotate-glow {
+      0% { transform: translate(-50%,-50%) scale(1.12) rotate(0deg);}
+      100% { transform: translate(-50%,-50%) scale(1.12) rotate(360deg);}
+    }
     .container {
-      background: #18181b;
-      border-radius: 18px;
-      padding: 48px 32px;
-      box-shadow: 0 6px 32px rgba(0,0,0,0.5), 0 1.5px 6px rgba(255,0,0,0.1);
+      background: rgba(24, 24, 35, 0.97);
+      border-radius: 22px;
+      padding: 46px 32px 40px 32px;
+      box-shadow:
+        0 0 32px 4px #19192b,
+        0 0 0 2px #fa2424bb,
+        0 12px 36px 0px #00f0ff30;
       text-align: center;
-      max-width: 500px;
+      max-width: 545px;
       width: 90vw;
       position: relative;
       z-index: 2;
-      transition: transform 0.2s cubic-bezier(.25,.8,.25,1);
+      transition: transform 0.18s cubic-bezier(.25,.8,.25,1);
       will-change: transform;
+      overflow: visible;
+      border: 2.5px solid #282a3c;
+      backdrop-filter: blur(1.5px);
     }
     .container.tilted {
-      transition: transform 0.1s cubic-bezier(.25,.8,.25,1);
-      transform: perspective(900px) rotateY(18deg) scale(1.04);
+      transition: transform 0.13s cubic-bezier(.25,.8,.25,1);
+      /* Dramatic tilt and scale */
+      transform: perspective(650px) rotateY(32deg) scale(1.11) skewY(2deg) rotateX(6deg) rotateZ(-2.5deg);
+      box-shadow:
+        0 0 72px 12px #fa242466,
+        0 0 0 3.5px #00f0ffcc,
+        0 22px 48px 0px #fa242422;
+      border-color: #fa2424cc;
+    }
+    .container::before {
+      content: "";
+      position: absolute;
+      inset: -2.5px;
+      border-radius: 26px;
+      background:
+        linear-gradient(120deg, #fa2424 10%, #00f0ff 90%);
+      opacity: 0.18;
+      z-index:-1;
+      filter: blur(8px);
+      pointer-events: none;
     }
     .reflection {
       width: 100%;
-      height: 70px;
+      height: 75px;
       margin-top: -16px;
       z-index: 1;
       pointer-events: none;
@@ -53,30 +97,42 @@
     .reflection-inner {
       width: 95%;
       height: 100%;
-      border-radius: 18px;
+      border-radius: 20px;
       background: linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(24,24,27,0.01) 80%);
-      filter: blur(5px) opacity(0.55);
+      filter: blur(8px) opacity(0.55);
       transform: scaleY(-1);
       margin-top: -14px;
     }
     h1 {
       color: #fa2424;
-      font-size: 2.1rem;
-      letter-spacing: 2px;
-      margin-bottom: 18px;
-      margin-top: 0;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      font-size: 2.07rem;
+      letter-spacing: 2.5px;
+      margin-bottom: 20px;
+      margin-top: -8px;
       font-weight: 700;
       user-select: none;
+      text-shadow:
+        0 0 16px #fa2424cc,
+        0 2px 4px #141323;
+      background: linear-gradient(90deg, #fa2424, #fff 45%, #00f0ff 99%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .intro {
-      color: #fff;
-      font-size: 1.12rem;
+      color: #eafaff;
+      font-size: 1.13rem;
       margin-bottom: 0;
       margin-top: 0;
-      line-height: 1.7;
+      line-height: 1.72;
       text-align: left;
       white-space: pre-line;
       user-select: none;
+      background: linear-gradient(90deg, #fff 70%, #00f0ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 500;
     }
     .highlight {
       color: #fa2424;
@@ -86,54 +142,95 @@
       margin-top: 38px;
       display: inline-flex;
       align-items: center;
-      background: #5865F2;
+      background: linear-gradient(90deg, #5865F2 60%, #00f0ff 100%);
       color: #fff;
       border: none;
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-size: 1.08rem;
-      font-weight: 600;
-      box-shadow: 0 2px 10px rgba(88,101,242,0.17);
+      padding: 14px 32px 14px 24px;
+      border-radius: 11px;
+      font-size: 1.16rem;
+      font-weight: 700;
+      box-shadow:
+        0 4px 28px 0px #5865F299,
+        0 0px 0px #00f0ff;
       cursor: pointer;
-      transition: transform 0.14s, box-shadow 0.14s, background 0.17s;
+      transition: transform 0.17s, box-shadow 0.14s, background 0.14s;
       text-decoration: none;
       gap: 12px;
       outline: none;
+      letter-spacing: 1.1px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #22253b;
     }
     .discord-btn:hover, .discord-btn:active {
-      background: #4752C4;
-      box-shadow: 0 4px 18px rgba(88,101,242,0.27);
-      transform: scale(1.05);
+      background: linear-gradient(90deg, #00f0ff 0%, #5865F2 100%);
+      box-shadow:
+        0 4px 32px 0 #00f0ff77,
+        0 0px 0px #00f0ff;
+      transform: scale(1.09) skewX(-4deg);
+      border-color: #00f0ff;
     }
     .discord-logo {
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
       display: inline-block;
       vertical-align: middle;
+      filter: drop-shadow(0 0 8px #00f0ffb0);
+    }
+    .discord-btn::after {
+      content: "";
+      position: absolute;
+      right: -50px;
+      top: 0;
+      width: 40px;
+      height: 100%;
+      background: linear-gradient(98deg, #fff8 0%, #fff0 100%);
+      opacity: 0.6;
+      transform: skewX(-18deg);
+      transition: right 0.3s;
+    }
+    .discord-btn:hover::after {
+      right: 120%;
+      transition: right 0.5s cubic-bezier(.22,1,.36,1);
     }
     @media (max-width: 600px) {
       .container {
-        padding: 28px 7px;
+        padding: 18px 4vw 18px 4vw;
       }
       h1 {
-        font-size: 1.4rem;
+        font-size: 1.16rem;
+        margin-bottom: 11px;
       }
       .intro {
-        font-size: 1rem;
+        font-size: 0.96rem;
       }
       .discord-btn {
-        padding: 11px 17px;
-        font-size: 0.98rem;
+        padding: 11px 15px 11px 13px;
+        font-size: 0.99rem;
       }
       .reflection {
-        height: 40px;
+        height: 32px;
       }
+      .futuristic-glow {
+        width: 330px;
+        height: 200px;
+        filter: blur(36px) brightness(0.7);
+      }
+    }
+    /* Neon border glow on focus/tilt */
+    .container.tilted, .container:focus-within {
+      box-shadow:
+        0 0 80px 20px #00f0ffaa,
+        0 0 0 4px #fa2424cc,
+        0 22px 48px 0px #fa242422;
+      border-color: #00f0ff;
     }
   </style>
 </head>
 <body>
+  <div class="futuristic-glow"></div>
   <div class="centerer">
-    <div class="container" id="tiltCard">
+    <div class="container" id="tiltCard" tabindex="0">
       <h1>🔥 Hello Want the best Blade Ball &amp; Roblox scripts? 🔥</h1>
       <div class="intro">
 Join Zeryx— a friendly, active server with both <b>free &amp; premium scripts</b>, fast support, and exciting events!
@@ -163,23 +260,29 @@ Join Zeryx— a friendly, active server with both <b>free &amp; premium scripts<
     </div>
   </div>
   <script>
-    // Tilt effect on tap/hold
+    // Super tilt effect on tap/hold (mobile and desktop!)
     const card = document.getElementById('tiltCard');
     let touchTimeout = null;
+    let isTouching = false;
+
     // For mobile: touch and hold
     card.addEventListener('touchstart', () => {
+      isTouching = true;
       touchTimeout = setTimeout(() => {
-        card.classList.add('tilted');
-      }, 120);
+        if (isTouching) card.classList.add('tilted');
+      }, 90); // faster response
     });
     card.addEventListener('touchend', () => {
+      isTouching = false;
       clearTimeout(touchTimeout);
       card.classList.remove('tilted');
     });
     card.addEventListener('touchcancel', () => {
+      isTouching = false;
       clearTimeout(touchTimeout);
       card.classList.remove('tilted');
     });
+
     // For desktop: mouse hold
     card.addEventListener('mousedown', () => {
       card.classList.add('tilted');
@@ -188,6 +291,14 @@ Join Zeryx— a friendly, active server with both <b>free &amp; premium scripts<
       card.classList.remove('tilted');
     });
     card.addEventListener('mouseleave', () => {
+      card.classList.remove('tilted');
+    });
+
+    // Optional: Keyboard focus glow
+    card.addEventListener('focus', () => {
+      card.classList.add('tilted');
+    });
+    card.addEventListener('blur', () => {
       card.classList.remove('tilted');
     });
   </script>
